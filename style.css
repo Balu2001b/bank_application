@@ -1,0 +1,393 @@
+/* Hamburger Button */
+    .hamburger {
+      font-size: 28px;
+      padding: 15px;
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: white;
+    }
+
+    /* Sidebar Styles (Right) */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -300px; /* hidden by default */
+      width: 250px;
+      height: 100%;
+      background-color: white;
+      color: black;
+    
+      box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+
+    .sidebar.active {
+      right: 0; /* show sidebar */
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      color: black;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin: 15px 0;
+      padding: 8px 0;
+      margin-left: 10px;
+      border-bottom: 1px solid #555;
+      cursor: pointer;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .sidebar ul li:hover {
+      color: #ffc107;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+      z-index: 998;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+
+    .sidebar-heading{
+
+
+        border: 1px solid black;
+        height: 50px;
+        background-color: red;
+        
+    }
+
+    .sidebar-heading h2{
+
+        position: absolute;
+        top: 20px;
+        left: 60px;
+        font-size: 16px;
+        color: white;
+    }
+
+   
+
+
+.container{
+
+    border: 1px solid black;
+    height: 844px;
+    width: 390px;
+    position: absolute;
+    top: 0;
+    left: 500px;
+}
+
+.heading{
+
+    border: 1px solid black;
+    height: 60px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    background-color: red;
+}
+
+.heading img{
+
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  
+   
+}
+.heading span{
+
+    font-size: 15px;
+    font-weight: 600;
+     font-family: 'Segoe UI', sans-serif;
+    position: absolute;
+    left: 60px;
+    top: 20px;
+    color: white;
+}
+
+.balance{
+
+    border: 1px solid black;
+    height: 60px;
+    border-left: none;
+    border-right: none;
+    
+}
+
+.balance img{
+
+   height: 60px;
+   width: 390px;
+}
+.balance h1{
+
+    position: absolute;
+    top: 65px;
+    left: 10px;
+    font-size: 15px;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.balance p{
+
+    position: absolute;
+    top: 90px;
+    left: 10px;
+    font-size: 11px;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.balance button{
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    font-size: 12px;
+    padding: 6px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.item-container{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+
+.access{
+
+    position: absolute;
+    top: 130px;
+    left: 10px;
+    border: 1px solid black;
+    height: 90px;
+    width: 370px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  
+
+    
+    
+
+}
+.access h1{
+
+    font-size: 12px;
+    font-family: 'Segoe UI', sans-serif;
+    position: absolute;
+    top: -10px;
+    left: 5px;
+}
+
+.item img{
+
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+    
+}
+
+.item button{
+
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.item h2{
+
+    margin-top: 2px;
+    font-size: 10px;
+    color: #113d69;
+}
+
+/*----------------------------Bank styling section here----------------------------*/
+
+
+.bank{
+
+   position: absolute;
+    top: 340px;
+    left: 10px;
+    border: 1px solid black;
+    height: 100px;
+    width: 370px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.bank h1{
+
+    
+    font-size: 12px;
+    font-family: 'Segoe UI', sans-serif;
+    position: absolute;
+    top: -10px;
+    left: 5px;
+}
+
+.bank-container{
+
+   display: flex;
+   justify-content: space-between;
+   
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+   
+}
+
+
+/*-------------------------------pay and transfer styling section here-------------------------------*/
+
+.transfer{
+
+   position: absolute;
+    top: 460px;
+    left: 10px;
+    border: 1px solid black;
+    height: 100px;
+    width: 370px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.transfer h1{
+
+    
+    font-size: 12px;
+    font-family: 'Segoe UI', sans-serif;
+    position: absolute;
+    top: -10px;
+    left: 5px;
+}
+
+.transfer-container{
+
+   display: flex;
+   justify-content: space-between;
+   
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+   
+}
+
+
+
+
+/*-------------------------------loans styling section here-------------------------------*/
+
+.loans{
+
+   position: absolute;
+    top: 580px;
+    left: 10px;
+    border: 1px solid black;
+    height: 100px;
+    width: 370px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.loans h1{
+
+    
+    font-size: 12px;
+    font-family: 'Segoe UI', sans-serif;
+    position: absolute;
+    top: -10px;
+    left: 5px;
+}
+
+.loans-container{
+
+   display: flex;
+   justify-content: space-between;
+   
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+   
+}
+
+
+
+
+/*-------------------------------insurance styling section here-------------------------------*/
+
+.insure{
+
+   position: absolute;
+    top: 700px;
+    left: 10px;
+    border: 1px solid black;
+    height: 100px;
+    width: 370px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.insure h1{
+
+    
+    font-size: 12px;
+    font-family: 'Segoe UI', sans-serif;
+    position: absolute;
+    top: -10px;
+    left: 5px;
+}
+
+.insure-container{
+
+   display: flex;
+   justify-content: space-between;
+   
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+   
+}
+
+
+@media only screen and (max-width: 600px){
+
+        .container{
+
+            left: 0px;
+            
+        }
+}
