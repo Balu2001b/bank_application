@@ -15,7 +15,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
+<div id="toast-deposit" class="toast-deposit">Amount Deposited <i class="bi bi-check-circle"></i></div>
+<div id="toast-transfer" class="toast-transfer">Transaction Successful <i class="bi bi-check-circle"></i></div>
+
     <div class="container">
+
+        
 <!--------------------------------------Heading section here---------------------------------------------->
         <div class="heading">
 
@@ -48,15 +53,18 @@
 
 
         </div>
+
+
+
 <!--------------------------------------balance section ends here---------------------------------------------->
        <div class="balance">
 
             <img src="./savings.jpeg" alt="">
 
             <h1>Savings</h1>
-            <p>9494585938</p>
+            <p>9966588051</p>
 
-            <button id="balance">View Balance</button>
+            <button id="balanceDisplay">View Balance</button>
         </div>
 <!--------------------------------------Quick access section here-------------------------------------------------->
 
@@ -65,19 +73,23 @@
 
        <div class="item-container">
          <div class="item">
-            <button>
+            <button id="openDepositModal" class="btn-deposit">
+    <img src="./bank-business-tools-piggy-svgrepo-com.svg" alt="">
+    <h2>Deposit</h2>
+</button>
 
-                    <img src="./bank-business-tools-piggy-svgrepo-com.svg" alt="">
-                    <h2>Deposit</h2>
-            </button>
+           
 
         </div>
-        <div class="item">
-            <button>
 
-                    <img src="./transfer money.svg" alt="">
-                    <h2>Transfer Money</h2>
+
+        <div class="item">
+           <!-- Transfer Money Button -->
+            <button id="openTransferModal" class="btn-transfer" >
+                <img src="./transfer money.svg" alt="">
+                <h2>Transfer Money</h2>
             </button>
+
 
         </div>
         <div class="item">
@@ -88,10 +100,11 @@
             </button>
         </div>
         <div class="item">
-            <button>
+            <button id="openHistoryModal" class="btn-history">
 
                     <img src="./transactions.svg" alt="">
                     <h2>Transactions</h2>
+                    
             </button>
 
         </div>
@@ -99,6 +112,56 @@
 </div>
 
 
+
+<!-- Deposit Modal -->
+<div id="depositModal" class="modal">
+    <div class="modal-content">
+        <span class="close close-deposit">&times;</span>
+        <h3>Deposit Money</h3>
+        <input type="number" id="depositAmount" placeholder="Enter amount to deposit">
+        <button id="depositBtn" onclick="showToast()">Deposit</button>
+    </div>
+</div>
+
+<!-- Transfer Modal -->
+<div id="transferModal" class="modal">
+    <div class="modal-content">
+        <span class="close close-transfer">&times;</span>
+        <h3>Transfer Money</h3>
+        <input type="text" id="transferToAccount" placeholder="Enter 10-digit account number" maxlength="10">
+        <input type="number" id="transferAmount" placeholder="Enter amount to transfer">
+
+        <button id="transferBtn" onclick="showToast_transfer()">Transfer</button>
+    </div>
+</div>
+
+<!-- Transaction History Modal -->
+<div id="historyModal" class="modal">
+    <div class="modal-content">
+        <span class="close close-history">&times;</span>
+        <h3>Transaction History</h3>
+        <ul id="transactionHistory"></ul>
+    </div>
+</div>
+<!------------------------------------Add images section here------------------------------------------->
+
+<div class="slider">
+    <div class="slides">
+        <img src="./image-1.jpg" class="slide" alt="Image 1">
+        <img src="./image-2.jpg" class="slide" alt="Image 2">
+        <img src="./image-3.jpg" class="slide" alt="Image 3">
+        <img src="./image-4.jpg" class="slide" alt="Image 4">
+       
+    </div>
+
+    <div class="dots-container">
+        <span class="dot active"></span>
+        <span class="dot active"></span>
+        <span class="dot active"></span>
+        <span class="dot active"></span>
+        
+    </div>
+</div>
 
 <!-----------------------------------------Bank section here---------------------------------------------->
 
@@ -280,9 +343,12 @@
         
        </div>
     </div>   
-
+<p class="copy-rights"> <i class="bi bi-c-circle"></i> KS Bank 2025. All rights reserved.</p>
 </div>
 
+
+
+<!-----------------------------------------Scripting section here------------------------------------------->
 
   <script>
     const toggleBtn = document.getElementById('menuToggle');
@@ -300,17 +366,230 @@
     });
   </script>
 
+
+
+<!-----------------------------Images slider Script section here----------------------->
 <script>
-    let balanceButton = document.getElementById('balance');
-    balanceButton.addEventListener('click', function() {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            let index = 0;
 
-        balanceButton.textContent = "₹50,000";
-    
-       
+            function showSlide(n) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
 
-       
-    });
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+            }
+
+            function autoSlide() {
+            index = (index + 1) % slides.length;
+            showSlide(index);
+            }
+
+            setInterval(autoSlide, 2000); // Change image every 3 seconds
+
+            // Initialize first slide
+            showSlide(index);
+
 </script>
+
+
+
+<script>
+    // Elements
+const balanceDisplay = document.getElementById("balanceDisplay");
+const transactionHistoryList = document.getElementById("transactionHistory");
+
+
+
+let balance = parseFloat(localStorage.getItem("userBalance")) || 0;
+let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+// Update UI on load
+updateBalanceDisplay();
+renderTransactionHistory();
+
+// ---------- MODALS ----------
+function setupModal(openBtnId, modalId, closeClass) {
+    const openBtn = document.getElementById(openBtnId);
+    const modal = document.getElementById(modalId);
+    const closeBtn = modal.querySelector("." + closeClass);
+
+    openBtn.onclick = () => modal.style.display = "block";
+    closeBtn.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+}
+
+// Setup all modals
+setupModal("openDepositModal", "depositModal", "close-deposit");
+setupModal("openTransferModal", "transferModal", "close-transfer");
+setupModal("openHistoryModal", "historyModal", "close-history");
+
+// ---------- Deposit ----------
+document.getElementById("depositBtn").onclick = () => {
+    const amount = parseFloat(document.getElementById("depositAmount").value);
+    if (!isNaN(amount) && amount > 0) {
+        balance += amount;
+        saveBalance();
+        saveTransaction(`Deposited ₹${amount.toFixed(2)}`);
+        document.getElementById("depositAmount").value = "";
+        document.getElementById("depositModal").style.display = "none";
+        showToast_deposit();
+    } else {
+        alert("Enter a valid amount to deposit.");
+    }
+};
+
+// ---------- Transfer ----------
+document.getElementById("transferBtn").onclick = () => {
+    const amount = parseFloat(document.getElementById("transferAmount").value);
+    const account = document.getElementById("transferToAccount").value.trim();
+
+  document.getElementById("transferToAccount").addEventListener("input", (e) => {
+    // Allow only digits and limit to 10 characters
+    e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
+
+    // Automatically move focus to the next input
+    if (e.target.value.length === 10) {
+        document.getElementById("transferAmount").focus();
+    }
+});
+
+
+    if (!account || isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid account number and amount.");
+        return;
+    }
+
+    if (balance >= amount) {
+        balance -= amount;
+        saveBalance();
+
+        saveTransaction(`Transferred ₹${amount.toFixed(2)} to ${account}`);
+        
+        // Reset fields and close modal
+        document.getElementById("transferAmount").value = "";
+        document.getElementById("transferToAccount").value = "";
+        document.getElementById("transferModal").style.display = "none";
+
+        showToast_transfer();
+
+       
+
+        if (balance < 100) {
+            alert("⚠️ Warning: Low balance!");
+        }
+    } else {
+        alert("Insufficient balance.");
+    }
+
+
+};
+
+
+
+
+// ---------- Helpers ----------
+function updateBalanceDisplay() {
+    balanceDisplay.textContent = `Balance: ₹${balance.toFixed(2)}`;
+}
+
+function saveBalance() {
+    localStorage.setItem("userBalance", balance.toFixed(2));
+    updateBalanceDisplay();
+}
+
+function saveTransaction(text) {
+    const now = new Date();
+    const entry = {
+        description: text,
+        timestamp: formatCustomDate(now)
+    };
+    transactions.unshift(entry);
+    if (transactions.length > 10) transactions.pop();
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+    renderTransactionHistory();
+}
+
+
+function renderTransactionHistory() {
+    transactionHistoryList.innerHTML = "";
+    transactions.forEach(({ description, timestamp }) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <span class="desc">${description}</span>
+            <br>
+            <span class="time">${timestamp}</span>
+        `;
+        transactionHistoryList.appendChild(li);
+
+    
+
+
+        if (description.includes("Transferred")) {
+            li.style.color = "red";
+        } else if (description.includes("Deposited")) {
+            li.style.color = "green";
+        }
+
+    
+    });
+}
+
+
+
+function formatCustomDate(date) {
+    const day = String(date.getDate()).padStart(2, '0');
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12;
+
+    return `${day} ${month} ${year} - ${hours}:${minutes} ${ampm}`;
+   
+
+
+}
+
+
+
+</script>
+
+
+
+<script>
+    function showToast_deposit() {
+  const toast = document.getElementById("toast-deposit");
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+
+</script>
+
+<script>
+    function showToast_transfer() {
+  const toast = document.getElementById("toast-transfer");
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+
+</script>
+
+
 
 </body>
 </html>
