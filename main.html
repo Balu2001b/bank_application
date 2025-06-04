@@ -93,7 +93,7 @@
 
         </div>
         <div class="item">
-            <button>
+            <button id="openCardModalBtn" class="btn-card">
 
                     <img src="./show card.svg" alt="">
                     <h2>Show Card</h2>
@@ -143,6 +143,80 @@
         <ul id="transactionHistory"></ul>
     </div>
 </div>
+
+
+
+
+
+<!-----------------------------------deposit Modal keypad----------------------------------------------->
+
+<div id="pinAuthModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" onclick="document.getElementById('pinAuthModal').style.display='none';">&times;</span>
+    <h3>Enter Transaction PIN</h3>
+    
+    <div class="pinDots" id="depositDots">
+      <span class="dot1"></span>
+      <span class="dot1"></span>
+      <span class="dot1"></span>
+      <span class="dot1"></span>
+    </div>
+
+    <div class="pinKeypad" id="depositKeypad">
+      <button class="pinKey">1</button>
+      <button class="pinKey">2</button>
+      <button class="pinKey">3</button>
+      <button class="pinKey">4</button>
+      <button class="pinKey">5</button>
+      <button class="pinKey">6</button>
+      <button class="pinKey">7</button>
+      <button class="pinKey">8</button>
+      <button class="pinKey">9</button>
+      <button class="pinKey" id="depositClear">⌫</button>
+      <button class="pinKey">0</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-----------------------------------Transfer Modal keypad----------------------------------------------->
+
+<div id="transferPinModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" onclick="document.getElementById('transferPinModal').style.display='none';">&times;</span>
+    <h3>Enter Transaction PIN</h3>
+
+    <div class="pinDots" id="transferDots">
+      <span class="dot1"></span>
+      <span class="dot1"></span>
+      <span class="dot1"></span>
+      <span class="dot1"></span>
+    </div>
+
+    <div class="pinKeypad" id="transferKeypad">
+      <button class="pinKey">1</button>
+      <button class="pinKey">2</button>
+      <button class="pinKey">3</button>
+      <button class="pinKey">4</button>
+      <button class="pinKey">5</button>
+      <button class="pinKey">6</button>
+      <button class="pinKey">7</button>
+      <button class="pinKey">8</button>
+      <button class="pinKey">9</button>
+      <button class="pinKey">0</button>
+      <button class="pinKey" id="transferClear">⌫</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 <!------------------------------------Add images section here------------------------------------------->
 
 <div class="slider">
@@ -343,12 +417,73 @@
         
        </div>
     </div>   
+
+
+<!-- Modal structure -->
+<div id="cardModal" class="modal-card">
+  <div class="modal-content-card">
+    <span class="close-btn" id="closeCardModalBtn">&times;</span>
+    
+    <!-- Your credit card HTML inside modal -->
+    <div class="card-wrapper">
+      <div class="credit-card" id="creditCard">
+        
+        <!-- Front -->
+        <div class="card front">
+          <div class="chip"><img src="./sim tracker.png" alt="chip"></div>
+          <div class="logo">KS Card</div>
+          <div class="number">9494 0000 5859 3800</div>
+          <div class="details">
+            <div>
+              <label>Card Holder</label>
+              <div class="name">KISHORE KUMAR MUTCHA</div>
+            </div>
+            <div>
+              <label>Expires</label>
+              <div class="expiry">05/30</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="card back">
+          <div class="stripe"></div>
+          <div class="cvv-box">
+            <label>CVV</label>
+            <div class="cvv">953</div>
+          </div>
+          <div class="back-logo">KS Card</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flip button -->
+    <button id="flipCardBtn">Flip Card</button>
+  </div>
+</div>
+
+
+
+
 <p class="copy-rights"> <i class="bi bi-c-circle"></i> KS Bank 2025. All rights reserved.</p>
+
 </div>
 
 
 
 <!-----------------------------------------Scripting section here------------------------------------------->
+<script>
+    const flipBtn = document.getElementById("flipCardBtn");
+const creditCard = document.getElementById("creditCard");
+
+flipBtn.addEventListener("click", () => {
+  creditCard.classList.toggle("flipped");
+});
+
+</script>
+
+
+
 
   <script>
     const toggleBtn = document.getElementById('menuToggle');
@@ -371,7 +506,7 @@
 <!-----------------------------Images slider Script section here----------------------->
 <script>
             const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.dot');
+            const dots = document.querySelectorAll('.dot1');
             let index = 0;
 
             function showSlide(n) {
@@ -408,6 +543,14 @@ const transactionHistoryList = document.getElementById("transactionHistory");
 let balance = parseFloat(localStorage.getItem("userBalance")) || 0;
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
+
+// Set a default PIN if not set already (only once)
+if (!localStorage.getItem("userPIN")) {
+    localStorage.setItem("userPIN", "1234");
+}
+
+
+
 // Update UI on load
 updateBalanceDisplay();
 renderTransactionHistory();
@@ -428,66 +571,172 @@ setupModal("openDepositModal", "depositModal", "close-deposit");
 setupModal("openTransferModal", "transferModal", "close-transfer");
 setupModal("openHistoryModal", "historyModal", "close-history");
 
-// ---------- Deposit ----------
-document.getElementById("depositBtn").onclick = () => {
-    const amount = parseFloat(document.getElementById("depositAmount").value);
-    if (!isNaN(amount) && amount > 0) {
-        balance += amount;
-        saveBalance();
-        saveTransaction(`Deposited ₹${amount.toFixed(2)}`);
-        document.getElementById("depositAmount").value = "";
-        document.getElementById("depositModal").style.display = "none";
-        showToast_deposit();
-    } else {
-        alert("Enter a valid amount to deposit.");
-    }
-};
 
-// ---------- Transfer ----------
-document.getElementById("transferBtn").onclick = () => {
-    const amount = parseFloat(document.getElementById("transferAmount").value);
-    const account = document.getElementById("transferToAccount").value.trim();
 
-  document.getElementById("transferToAccount").addEventListener("input", (e) => {
-    // Allow only digits and limit to 10 characters
-    e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
 
-    // Automatically move focus to the next input
-    if (e.target.value.length === 10) {
-        document.getElementById("transferAmount").focus();
-    }
+const openModalBtn = document.getElementById("openCardModalBtn");
+const modal = document.getElementById("cardModal");
+const closeModalBtn = document.getElementById("closeCardModalBtn");
+
+openModalBtn.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+closeModalBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Close modal if clicking outside the modal content
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
 });
 
 
-    if (!account || isNaN(amount) || amount <= 0) {
-        alert("Please enter a valid account number and amount.");
-        return;
-    }
-
-    if (balance >= amount) {
-        balance -= amount;
-        saveBalance();
-
-        saveTransaction(`Transferred ₹${amount.toFixed(2)} to ${account}`);
-        
-        // Reset fields and close modal
-        document.getElementById("transferAmount").value = "";
-        document.getElementById("transferToAccount").value = "";
-        document.getElementById("transferModal").style.display = "none";
-
-        showToast_transfer();
-
-       
-
-        if (balance < 100) {
-            alert("⚠️ Warning: Low balance!");
-        }
-    } else {
-        alert("Insufficient balance.");
-    }
 
 
+
+
+// ------------------------------------------------------- Deposit -------------------------------->
+
+let depositAmountToConfirm = 0;
+let depositPin = "";
+
+document.getElementById("depositBtn").onclick = () => {
+  const amount = parseFloat(document.getElementById("depositAmount").value);
+  if (!isNaN(amount) && amount > 0) {
+    depositAmountToConfirm = amount;
+    depositPin = "";
+    updateDepositDots();
+    document.getElementById("depositModal").style.display = "none";
+    document.getElementById("pinAuthModal").style.display = "block";
+  } else {
+    alert("Enter a valid amount to deposit.");
+  }
 };
+
+function updateDepositDots() {
+  const dots = document.querySelectorAll("#depositDots .dot1");
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("filled", index < depositPin.length);
+  });
+}
+
+document.querySelectorAll("#depositKeypad .pinKey").forEach((btn) => {
+  btn.onclick = () => {
+    const val = btn.textContent;
+    if (val === "⌫") {
+      depositPin = depositPin.slice(0, -1);
+    } else if (depositPin.length < 4) {
+      depositPin += val;
+    }
+
+    updateDepositDots();
+
+    if (depositPin.length === 4) {
+      validateDepositPin(depositPin);
+    }
+  };
+});
+
+function validateDepositPin(pin) {
+  const savedPin = localStorage.getItem("userPIN");
+  if (pin === savedPin) {
+    balance += depositAmountToConfirm;
+    saveBalance();
+    saveTransaction(`Deposited ₹${depositAmountToConfirm.toFixed(2)}`);
+    showToast_deposit();
+
+    document.getElementById("depositAmount").value = "";
+    document.getElementById("pinAuthModal").style.display = "none";
+  } else {
+    alert("Incorrect PIN.");
+  }
+
+  depositPin = "";
+  updateDepositDots();
+}
+
+
+// --------------------------------------------------- Transfer ------------------------------------------------------->
+
+
+let transferPin = "";
+let transferAmountToConfirm = 0;
+let transferToAccount = "";
+
+document.getElementById("transferBtn").onclick = () => {
+  const amount = parseFloat(document.getElementById("transferAmount").value);
+  const account = document.getElementById("transferToAccount").value.trim();
+
+  if (!account || isNaN(amount) || amount <= 0) {
+    alert("Please enter a valid account number and amount.");
+    return;
+  }
+
+  if (balance < amount) {
+    alert("Insufficient balance.");
+    return;
+  }
+
+  // Save transfer info, show PIN screen
+  transferAmountToConfirm = amount;
+  transferToAccount = account;
+  transferPin = "";
+  updateTransferDots();
+
+  document.getElementById("transferModal").style.display = "none";
+  document.getElementById("transferPinModal").style.display = "block";
+};
+
+function updateTransferDots() {
+  const dots = document.querySelectorAll("#transferDots .dot1");
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("filled", index < transferPin.length);
+  });
+}
+
+document.querySelectorAll("#transferKeypad .pinKey").forEach((btn) => {
+  btn.onclick = () => {
+    const val = btn.textContent;
+    if (val === "⌫") {
+      transferPin = transferPin.slice(0, -1);
+    } else if (transferPin.length < 4) {
+      transferPin += val;
+    }
+
+    updateTransferDots();
+
+    if (transferPin.length === 4) {
+      validateTransferPin(transferPin);
+    }
+  };
+});
+
+function validateTransferPin(pin) {
+  const savedPin = localStorage.getItem("userPIN");
+  if (pin === savedPin) {
+    balance -= transferAmountToConfirm;
+    saveBalance();
+    saveTransaction(`Transferred ₹${transferAmountToConfirm.toFixed(2)} to ${transferToAccount}`);
+    showToast_transfer();
+
+    if (balance < 100) {
+      alert("⚠️ Warning: Low balance!");
+    }
+
+    document.getElementById("transferAmount").value = "";
+    document.getElementById("transferToAccount").value = "";
+    document.getElementById("transferPinModal").style.display = "none";
+  } else {
+    alert("Incorrect PIN.");
+  }
+
+  transferPin = "";
+  transferToAccount = "";
+  updateTransferDots();
+}
 
 
 
