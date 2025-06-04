@@ -656,7 +656,7 @@
   border-radius: 15px;
   color: rgb(5, 5, 5);
   position: absolute;
-  top: 50px; left: -10px;
+  top: 50px; left: 10px;
   backface-visibility: hidden;
   transition: transform 0.6s ease;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -793,8 +793,23 @@
 
     position: relative;
     left: 30px;
+    background-color: white;
+    height: 320px;
+    width: 330px;
+    border-radius: 10px;
+    
 }
 
+#closeCardModalBtn{
+
+    position: relative;
+    top: 0px;
+    left: 300px;
+    font-size: 24px;
+    font-weight: 600;
+    color: red;
+    cursor: pointer;
+}
 
 
 /*----------------------------------------- Toast existing Products Section here---------------------------------------------*/
@@ -942,6 +957,31 @@
             left: 0px;
             top: 200px;
         }
+        
+/* Modal backdrop */
+.modal-card {
+  display: none; /* hidden by default */
+  position: fixed; 
+  z-index: 1000;
+  left: 0px; top: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.modal-content-card{
+
+    position: relative;
+    left: 0px;
+    background-color: white;
+    height: 320px;
+    width: 330px;
+    border-radius: 10px;
+    
+}
 
 
 }
