@@ -1,3 +1,16 @@
+
+:root {
+    --color-primary: #0073ff;
+    --color-white: #e9e9e9;
+    --color-black: #141d28;
+    --color-black-1: #212b38;
+    }
+
+
+
+
+
+
 /* Hamburger Button */
     .hamburger {
       font-size: 28px;
