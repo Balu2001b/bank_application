@@ -572,7 +572,7 @@
 #transactionHistory li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    font-size: 0.95rem;
+    font-size: 12px;
     list-style-type: none;
     
 }
@@ -586,8 +586,8 @@
 }
 #transactionHistory .desc {
     font-weight: 600;
-    margin-left: -100px;
-    font-size: 13px;
+    margin-left: -90px;
+    font-size: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -597,6 +597,202 @@
    
     
 
+}
+
+
+.pinDots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.dot1 {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #888;
+  background-color: transparent;
+}
+
+.dot1.filled {
+  background-color: black;
+}
+
+.pinKeypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 200px;
+  margin: auto;
+}
+
+.pinKey {
+  padding: 20px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.pinKey:active {
+  background-color: #ddd;
+}
+
+
+/* Credit Card Styles */
+.credit-card {
+  width: 320px;
+  height: 200px;
+  perspective: 1000px;
+  margin: 0 auto 20px;
+  position: relative;
+}
+
+.card {
+  width: 290px;
+  height: 170px;
+  border-radius: 15px;
+  color: rgb(5, 5, 5);
+  position: absolute;
+  top: 50px; left: -10px;
+  backface-visibility: hidden;
+  transition: transform 0.6s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.card.front {
+ background: linear-gradient(135deg, #333 0%, #e01616 100%);
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.card.back {
+  background: linear-gradient(135deg, #333 0%, #e01616 100%);
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.credit-card.flipped .front {
+  transform: rotateY(180deg);
+}
+
+.credit-card.flipped .back {
+  transform: rotateY(0deg);
+}
+
+/* Style the flip button */
+#flipCardBtn {
+  display: block;
+  margin-top: 45px;
+  margin-left: 90px;
+  padding: 10px 20px;
+  background-color: #2989d8;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#flipCardBtn:hover {
+  background-color: #207cca;
+}
+
+.chip img{
+
+  width: 50px;
+  height: 35px;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #e0e0e0;
+  letter-spacing: 1px;
+}
+
+.number {
+  font-size: 20px;
+  letter-spacing: 3px;
+  margin: 30px 0;
+  color: #e0e0e0;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.details .name, .details .expiry {
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+}
+
+.stripe {
+  background: #444;
+  height: 50px;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+.cvv-box {
+  margin-top: 30px;
+  background: #fff;
+  color: #000;
+  padding: 6px 10px;
+  width: 90px;
+  border-radius: 4px;
+}
+
+.cvv-box label {
+  font-size: 10px;
+  color: #aaa;
+}
+
+.back-logo {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #c0c0c0;
+}
+
+
+
+/* Modal backdrop */
+.modal-card {
+  display: none; /* hidden by default */
+  position: fixed; 
+  z-index: 1000;
+  left: 0px; top: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.modal-content-card{
+
+    position: relative;
+    left: 30px;
 }
 
 
@@ -746,4 +942,6 @@
             left: 0px;
             top: 200px;
         }
+
+
 }
