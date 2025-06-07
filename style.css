@@ -216,7 +216,7 @@
 .container{
 
     border: 1px solid black;
-    height: 900px;
+    height: 844px;
     width: 390px;
     position: absolute;
     top: 0;
@@ -1260,7 +1260,7 @@
 .balance button{
     position: fixed;
     top: 80px;
-    left: 290px;
+    left: 280px;
     font-size: 12px;
     padding: 6px;
     border: none;
@@ -1315,5 +1315,19 @@
         margin-top: 1px;
         color: white;
     }
+    
+/* Only this scrolls */
+.scroll-content {
+  position: absolute;
+  top: 130px; /* height of header */
+  bottom: 0px; /* height of footer */
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 200px); /* Adjust based on header height */
+  scrollbar-width: thin; /* For Firefox */
+}
+
 
 }
