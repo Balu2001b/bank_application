@@ -1329,6 +1329,10 @@ body {
     padding: 10px 15px; /* Add spacing for mobile view */
     overflow-y: scroll;
   }
+  body{
+
+    overflow-y: hidden;
+  }
 
 
 }
