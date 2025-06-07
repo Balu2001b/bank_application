@@ -1323,18 +1323,12 @@ body {
         color: white;
     }
     
-/* Only this scrolls */
-.scroll-content {
-  position: absolute;
-  top: 130px; /* height of header */
-  bottom: 0px; /* height of footer */
-  left: 0;
-  right: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: calc(100vh - 200px); /* Adjust based on header height */
-  scrollbar-width: thin; /* For Firefox */
-}
+ .scroll-content {
+    top: 130px; /* Smaller header for mobile */
+    height: calc(100vh - 170px); /* Adjusted for mobile header + footer */
+    padding: 10px 15px; /* Add spacing for mobile view */
+    overflow-y: scroll;
+  }
 
 
 }
