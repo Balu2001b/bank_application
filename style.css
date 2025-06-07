@@ -7,6 +7,7 @@
     }
 
 
+
 /*---------------------------Pre Loader Animation Styling Section Here------------------------------------*/
 
 
@@ -52,6 +53,55 @@
   animation: spin 1s linear infinite;
 }
 
+
+
+/*------------------------------Down section here-----------------------------------*/
+
+ .down-section {
+        position: fixed;
+        bottom: 0;
+        left: 500px;
+        width: 390px;
+        background: linear-gradient(135deg, #333 0%, #e01616 100%);
+        padding: 10px 0px 10px 0px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .down-container {
+        display: flex;
+        justify-content: space-around;
+      
+      
+      }
+
+    .down-item {
+        text-align: center;
+    }
+    .down-item a {
+        text-decoration: none;
+        color: white;
+        font-size: 17px;
+       
+    }
+    .down-item a i:hover {
+        color: rgb(58, 2, 2);
+        text-decoration: none;
+    }
+
+    .down-item a i{
+        width: 40px;
+        height: 40px;
+        text-decoration: none;
+        
+    }
+
+    .down-item h2 {
+        font-size: 12px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: 1px;
+        color: white;
+    }
 
 
 
@@ -139,6 +189,18 @@
         
     }
 
+    .sidebar-heading img{
+
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+  
+   
+    }
+
     .sidebar-heading h2{
 
         position: absolute;
@@ -154,23 +216,44 @@
 .container{
 
     border: 1px solid black;
-    height: 844px;
+    height: 900px;
     width: 390px;
     position: absolute;
     top: 0;
     left: 500px;
+
 }
 
-.heading{
 
-    border: 1px solid black;
-    height: 60px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    background-color: red;
+/* Only this scrolls */
+.scroll-content {
+  position: absolute;
+  top: 130px; /* height of header */
+  bottom: 0px; /* height of footer */
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 200px); /* Adjust based on header height */
+  
+  scrollbar-width: thin; /* For Firefox */
 }
+
+
+.heading {
+  position: fixed;
+  top: 0;
+  left: 501px;
+  right: 0;
+  height: 70px; /* adjust as needed */
+  width: 390px;
+  background-color:red; /* or your desired color */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
 
 .heading img{
 
@@ -207,12 +290,14 @@
 
    height: 60px;
    width: 390px;
+   position: fixed;
+   top: 70px;
 }
 .balance h1{
 
-    position: absolute;
-    top: 65px;
-    left: 10px;
+    position: fixed;
+    top: 70px;
+    left: 510px;
     font-size: 15px;
     color: white;
     font-family: 'Segoe UI', sans-serif;
@@ -220,18 +305,18 @@
 
 .balance p{
 
-    position: absolute;
+    position: fixed;
     top: 90px;
-    left: 10px;
+    left: 510px;
     font-size: 11px;
     color: white;
     font-family: 'Segoe UI', sans-serif;
 }
 
 .balance button{
-    position: absolute;
+    position: fixed;
     top: 80px;
-    right: 10px;
+    left: 790px;
     font-size: 12px;
     padding: 6px;
     border: none;
@@ -253,7 +338,7 @@
 .access{
 
     position: absolute;
-    top: 130px;
+    top: 10px;
     left: 10px;
     border: 1px solid black;
     height: 90px;
@@ -306,7 +391,7 @@
 .slider {
     position: relative;
     width: 100%;
-    top: 120px;
+    top: 105px;
     left: 10px;
     max-width: 370px;
     overflow: hidden;
@@ -359,7 +444,7 @@
 .bank{
 
    position: absolute;
-    top: 340px;
+    top: 190px;
     left: 10px;
     border: 1px solid black;
     height: 100px;
@@ -395,7 +480,7 @@
 .transfer{
 
    position: absolute;
-    top: 460px;
+    top: 300px;
     left: 10px;
     border: 1px solid black;
     height: 100px;
@@ -433,7 +518,7 @@
 .loans{
 
    position: absolute;
-    top: 580px;
+    top: 410px;
     left: 10px;
     border: 1px solid black;
     height: 100px;
@@ -471,7 +556,7 @@
 .insure{
 
    position: absolute;
-    top: 700px;
+    top: 520px;
     left: 10px;
     border: 1px solid black;
     height: 100px;
@@ -973,19 +1058,31 @@
 }
 
 
-.copy-rights{
+/*-------------------------------insurance styling section here-------------------------------*/
 
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
+.footer{
+
+   position: absolute;
+    top: 650px;
+    left: 0px;
+    height: 30px;
+    width: 390px;
     background-color: #f1f1f1;
-    color: #333;
-    font-size: 14px;
-    font-weight: 500;
+    text-align: center;
+    
+   
 }
+.footer p{
+
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #555;
+    margin-top: 5px;
+}
+
+
+
+
 
 
 
@@ -1085,5 +1182,138 @@
 
 
 
+.heading {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  right: 0;
+  height: 70px; /* adjust as needed */
+  width: 390px;
+  background-color:red; /* or your desired color */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+
+.heading img{
+
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+  
+   
+}
+.heading span{
+
+    font-size: 15px;
+    font-weight: 600;
+     font-family: 'Segoe UI', sans-serif;
+    position: absolute;
+    left: 60px;
+    top: 20px;
+    color: white;
+}
+
+.balance{
+
+    border: 1px solid black;
+    height: 60px;
+    border-left: none;
+    border-right: none;
+    left: 0px;
+    
+}
+
+.balance img{
+
+   height: 60px;
+   width: 390px;
+   position: fixed;
+   top: 70px;
+   left: 0px;
+}
+.balance h1{
+
+    position: fixed;
+    top: 70px;
+    left: 10px;
+    font-size: 15px;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.balance p{
+
+    position: fixed;
+    top: 90px;
+    left: 10px;
+    font-size: 11px;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.balance button{
+    position: fixed;
+    top: 80px;
+    left: 290px;
+    font-size: 12px;
+    padding: 6px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+ .down-section {
+        position: fixed;
+        bottom: 0;
+        left: 0px;
+        width: 390px;
+        background: linear-gradient(135deg, #333 0%, #e01616 100%);
+        padding: 10px 0px 10px 0px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .down-container {
+        display: flex;
+        justify-content: space-around;
+      
+      
+      }
+
+    .down-item {
+        text-align: center;
+    }
+    .down-item a {
+        text-decoration: none;
+        color: white;
+        font-size: 17px;
+       
+    }
+    .down-item a i:hover {
+        color: rgb(58, 2, 2);
+        text-decoration: none;
+    }
+
+    .down-item a i{
+        width: 40px;
+        height: 40px;
+        text-decoration: none;
+        
+    }
+
+    .down-item h2 {
+        font-size: 12px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: 1px;
+        color: white;
+    }
 
 }
