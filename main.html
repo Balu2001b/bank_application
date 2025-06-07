@@ -103,6 +103,7 @@
         </div>
 
 
+        
         <div class="item">
            <!-- Transfer Money Button -->
             <button id="openTransferModal" class="btn-transfer" >
@@ -895,6 +896,14 @@ function formatCustomDate(date) {
 <script>
   const preloader = document.getElementById('preloader');
   const depositBtn = document.getElementById('openDepositModal');
+  const transferBtn = document.getElementById('openTransferModal');
+  const cardBtn = document.getElementById('openCardModalBtn');
+  const historyBtn = document.getElementById('openHistoryModal');
+
+
+  //-------------Deposit button preloader----------------------------------------
+
+
 
   depositBtn.addEventListener('click', function () {
     // Show the loader
@@ -904,12 +913,56 @@ function formatCustomDate(date) {
     setTimeout(() => {
       preloader.style.display = 'none';
 
-      // Optional: open modal or navigate
-      // document.getElementById('depositModal').style.display = 'block';
-      // window.location.href = "deposit.html";
-
     }, 1000); // 1 second delay
   });
+
+
+
+  
+  //-------------transfer button preloader----------------------------------------
+
+   transferBtn.addEventListener('click', function () {
+    // Show the loader
+    preloader.style.display = 'flex';
+
+    // Simulate loading, then hide loader and do something
+    setTimeout(() => {
+      preloader.style.display = 'none';
+      
+    }, 1000); // 1 second delay
+  });
+
+
+  
+  //-------------card button preloader----------------------------------------
+
+   cardBtn.addEventListener('click', function () {
+    // Show the loader
+    preloader.style.display = 'flex';
+
+    // Simulate loading, then hide loader and do something
+    setTimeout(() => {
+      preloader.style.display = 'none';
+      
+    }, 1000); // 1 second delay
+  });
+
+
+  
+  //-------------transactions button preloader----------------------------------------
+
+  historyBtn.addEventListener('click', function () {
+    // Show the loader
+    preloader.style.display = 'flex';
+
+    // Simulate loading, then hide loader and do something
+    setTimeout(() => {
+      preloader.style.display = 'none';
+      
+    }, 1000); // 1 second delay
+  });
+
+
 </script>
 
 
