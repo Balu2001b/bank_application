@@ -20,6 +20,14 @@
 
     <div class="container">
 
+       <!----------------------------------Preloader Section Here--------------------------------->
+
+    <div id="preloader" class="preloader">
+      <p id="loader-text1" class="loader-text1"></p>
+        <img src="./preloader-unscreen.gif" alt="">
+        
+
+    </div>
         
 <!--------------------------------------Heading section here---------------------------------------------->
         <div class="heading">
@@ -69,11 +77,23 @@
 <!--------------------------------------Quick access section here-------------------------------------------------->
 
 <div class="access">
+  
     <h1>Quick Access</h1>
 
+    
+
        <div class="item-container">
+
+        <!-- Preloader -->
+<div id="preloader" style="display: none;">
+  <div class="loader-spinner"></div>
+</div>
+
+
          <div class="item">
+          
             <button id="openDepositModal" class="btn-deposit">
+              
     <img src="./bank-business-tools-piggy-svgrepo-com.svg" alt="">
     <h2>Deposit</h2>
 </button>
@@ -580,18 +600,29 @@ const closeModalBtn = document.getElementById("closeCardModalBtn");
 
 openModalBtn.addEventListener("click", () => {
   modal.style.display = "flex";
+
+  setTimeout(() => {
+    modal.classList.add("show");
+  }, 10); // allow a short delay to trigger animation
 });
 
 closeModalBtn.addEventListener("click", () => {
   modal.style.display = "none";
+  modal.classList.remove("show");
+  setTimeout(() => {
+    modal.classList.remove("show");
+  }, 300); // matches the CSS transition duration
 });
 
-// Close modal if clicking outside the modal content
-window.addEventListener("click", (event) => {
-  if (event.target === modal) {
-    modal.style.display = "none";
+// Optional: close modal when clicking outside
+window.onclick = (e) => {
+  if (e.target === modal) {
+    modal.classList.remove("show");
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 300);
   }
-});
+};
 
 
 
@@ -836,6 +867,49 @@ function formatCustomDate(date) {
 }
 
 
+</script>
+
+
+
+<!------------------------------------Preloader Animation Script Section Here-------------------------------->
+
+
+<script>
+    var loader = document.getElementById('preloader');
+    var loader_text = document.getElementById('loader-text1');
+    window.addEventListener('load',function(){
+
+      loader_text.innerHTML='please wait a moment...';
+        
+        setTimeout(function (){
+            loader.style.display = "none";
+            
+
+        },600);
+    }
+)
+
+</script>
+
+
+<script>
+  const preloader = document.getElementById('preloader');
+  const depositBtn = document.getElementById('openDepositModal');
+
+  depositBtn.addEventListener('click', function () {
+    // Show the loader
+    preloader.style.display = 'flex';
+
+    // Simulate loading, then hide loader and do something
+    setTimeout(() => {
+      preloader.style.display = 'none';
+
+      // Optional: open modal or navigate
+      // document.getElementById('depositModal').style.display = 'block';
+      // window.location.href = "deposit.html";
+
+    }, 1000); // 1 second delay
+  });
 </script>
 
 
