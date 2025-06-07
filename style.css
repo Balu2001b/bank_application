@@ -1325,7 +1325,7 @@ body {
     
  .scroll-content {
     top: 130px; /* Smaller header for mobile */
-    height: calc(100vh - 170px); /* Adjusted for mobile header + footer */
+    height: calc(100vh - 260px); /* Adjusted for mobile header + footer */
     padding: 10px 15px; /* Add spacing for mobile view */
     overflow-y: scroll;
   }
