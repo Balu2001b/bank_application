@@ -18,6 +18,10 @@
 <div id="toast-deposit" class="toast-deposit">Amount Deposited <i class="bi bi-check-circle"></i></div>
 <div id="toast-transfer" class="toast-transfer">Transaction Successful <i class="bi bi-check-circle"></i></div>
 
+ 
+
+
+
     <div class="container">
 
        <!----------------------------------Preloader Section Here--------------------------------->
@@ -28,16 +32,8 @@
         
 
     </div>
-        
-<!--------------------------------------Heading section here---------------------------------------------->
-        <div class="heading">
 
-           <img src="./ks logo.jpeg" alt=""><span>KS Bank</span>
-           
-            <button class="hamburger" id="menuToggle"><i class="bi bi-list"></i></button>
-
-
-            <!-- Sidebar (Right) -->
+ <!-- Sidebar (Right) -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-heading">
         <img src="./profile.svg" alt=""> 
@@ -57,6 +53,16 @@
 
   <!-- Overlay -->
   <div class="overlay" id="overlay"></div>
+   
+<!--------------------------------------Heading section here---------------------------------------------->
+        <div class="heading">
+
+           <img src="./ks logo.jpeg" alt=""><span>KS Bank</span>
+           
+            <button class="hamburger" id="menuToggle"><i class="bi bi-list"></i></button>
+
+
+           
 
 
 
@@ -74,8 +80,9 @@
 
             <button id="balanceDisplay">View Balance</button>
         </div>
-<!--------------------------------------Quick access section here-------------------------------------------------->
-
+  <!--------------------------------------Quick access section here-------------------------------------------------->
+<div class="scroll-content">
+  
 <div class="access">
   
     <h1>Quick Access</h1>
@@ -439,6 +446,15 @@
        </div>
     </div>   
 
+            
+<div class="footer">
+    <div class="footer-container">
+      <div class="item">
+         <p class="copy-rights"> <i class="bi bi-c-circle"></i> KS Bank 2025. All rights reserved.</p>
+      </div>
+    </div>
+</div>
+</div>
 
 <!-- Modal structure -->
 <div id="cardModal" class="modal-card">
@@ -483,10 +499,31 @@
   </div>
 </div>
 
+<!-------------------------------Down section here----------------------------------->
 
+   <div class="down-section">
 
+        <div class="down-container">
+            <div class="down-item">
+                <a href=""><i class="bi bi-house"></i>
+                <h2>Home</h2>
+                </a>
+            </div>
+            <div class="down-item">
+               <a href=""><i class="bi bi-qr-code-scan"></i>
+                <h2>Scan & Pay</h2>
+                </a>
+            </div>
+            <div class="down-item">
+                <a href=""><i class="bi bi-person"></i>
+                <h2>Profile</h2>
+                </a>
+                
+            </div>
+          
+        </div>
+    </div>
 
-<p class="copy-rights"> <i class="bi bi-c-circle"></i> KS Bank 2025. All rights reserved.</p>
 
 </div>
 
@@ -567,7 +604,7 @@ let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
 // Set a default PIN if not set already (only once)
 if (!localStorage.getItem("userPIN")) {
-    localStorage.setItem("userPIN", "1234");
+    localStorage.setItem("userPIN", "9494");
 }
 
 
